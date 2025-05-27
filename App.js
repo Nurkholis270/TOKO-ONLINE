@@ -1,8 +1,5 @@
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import React, { useState } from 'react';
 
 const products = [
   {
@@ -29,40 +26,51 @@ export default function TokoOnline() {
   );
 
   return (
-    <div className="p-6 max-w-screen-xl mx-auto">
-      <header className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-2">Toko Online Modern</h1>
-        <p className="text-gray-600">Temukan produk terbaik kami</p>
-        <div className="mt-4 max-w-md mx-auto">
-          <Input
-            placeholder="Cari produk..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: 20, fontFamily: 'Arial, sans-serif' }}>
+      <header style={{ textAlign: 'center', marginBottom: 40 }}>
+        <h1 style={{ fontSize: 36, marginBottom: 8 }}>Toko Online Modern</h1>
+        <p style={{ color: '#666' }}>Temukan produk terbaik kami</p>
+        <input
+          type="text"
+          placeholder="Cari produk..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          style={{
+            marginTop: 20,
+            padding: 10,
+            width: '100%',
+            maxWidth: 400,
+            fontSize: 16,
+            borderRadius: 4,
+            border: '1px solid #ccc'
+          }}
+        />
       </header>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
         {filteredProducts.map(product => (
-          <Card key={product.id} className="rounded-2xl shadow-lg">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-48 object-cover rounded-t-2xl"
-            />
-            <CardContent className="p-4">
-              <h2 className="text-xl font-semibold mb-1">{product.name}</h2>
-              <p className="text-gray-500 mb-2">{product.description}</p>
-              <div className="flex justify-between items-center">
-                <span className="text-lg font-bold text-green-600">{product.price}</span>
-                <Button>Beli</Button>
+          <div key={product.id} style={{ border: '1px solid #ddd', borderRadius: 8, overflow: 'hidden', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
+            <img src={product.image} alt={product.name} style={{ width: '100%', height: 160, objectFit: 'cover' }} />
+            <div style={{ padding: 16 }}>
+              <h2 style={{ fontSize: 20, marginBottom: 8 }}>{product.name}</h2>
+              <p style={{ color: '#888', marginBottom: 12 }}>{product.description}</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 'bold', color: 'green', fontSize: 18 }}>{product.price}</span>
+                <button style={{
+                  backgroundColor: '#0070f3',
+                  color: 'white',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: 4,
+                  cursor: 'pointer'
+                }}>Beli</button>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         ))}
       </section>
 
-      <footer className="text-center mt-16 text-sm text-gray-500">
+      <footer style={{ textAlign: 'center', marginTop: 60, color: '#aaa', fontSize: 14 }}>
         &copy; 2025 Toko Online Modern. Semua hak dilindungi.
       </footer>
     </div>
